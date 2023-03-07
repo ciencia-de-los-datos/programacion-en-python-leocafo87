@@ -212,7 +212,7 @@ def pregunta_06():
             max_val = max(valor)
             min_val = min(valor)
             result.append((variable,min_val,max_val))
-        result.sort()
+            result.sort()
         archivo.close()
     return(result)
 
