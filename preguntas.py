@@ -186,7 +186,35 @@ def pregunta_06():
     ]
 
     """
-    return
+    archivo = open('./data.csv', 'r')
+    cont_max_min ={}
+    result=[]
+
+    for linea in archivo.readlines():
+        columnas = linea.strip().split('\t')
+        diccionario = columnas[4]
+
+        for item in diccionario:
+            valores = diccionario.strip().split(',')
+        
+        for par in valores:
+            clave = par.split(':')
+
+        if clave[0] not in cont_max_min:
+            cont_max_min[clave[0]] = []
+            cont_max_min[clave[0]].append(int(clave[1]))
+
+    
+    for variable, valor in cont_max_min.items():
+        max_val = max(valor)
+        min_val = min(valor)
+        result.append((variable,min_val,max_val))
+
+    lista_max_min = list(result.items())
+    lista_max_min.sort()
+    archivo.close()
+
+    return(lista_max_min.sort())
 
 
 def pregunta_07():
