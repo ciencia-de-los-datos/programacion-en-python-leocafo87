@@ -48,9 +48,9 @@ def pregunta_02():
         else:
             conteos[valor_variable] += 1
     lista_conteos = list(conteos.items())
-    lista_conteos.sort()
+    lista=lista_conteos.sort()
     archivo.close()
-    return(lista_conteos.sort())
+    return(lista)
 
 
 def pregunta_03():
