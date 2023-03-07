@@ -162,11 +162,9 @@ def pregunta_05():
             max_val = max(valor)
             min_val = min(valor)
             resultado.append((variable,max_val,min_val))
-
-        lista_max_min = list(resultado.items())
-        lista_max_min.sort()
+            resultado.sort()
         archivo.close()
-    return(lista_max_min)
+    return(resultado)
 
 
 def pregunta_06():
