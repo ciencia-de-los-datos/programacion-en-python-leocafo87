@@ -70,20 +70,22 @@ def pregunta_03():
     ]
 
     """
-    archivo = open('./data.csv', 'r')
-    sumas = {}
+    with open('./data.csv', 'r') as archivo:
+        sumas = {}
+        result=[]
 
-    for linea in archivo.readlines():
-        columnas = linea.strip().split('\t')
-        valor_variable = columnas[0]
-        if valor_variable not in sumas:
-            sumas[valor_variable] = int(columnas[1])
-        else:
-            sumas[valor_variable] = sumas[valor_variable] + int(columnas[1])
-    lista_sumas = list(sumas.items())
-    lista_sumas.sort()
-    archivo.close()
-    return(lista_sumas.sort())
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            valor_variable = columnas[0]
+            if valor_variable not in sumas:
+                sumas[valor_variable] = int(columnas[1])
+            else:
+                sumas[valor_variable] = sumas[valor_variable] + int(columnas[1])
+        for element in sumas:
+                result.append((element,sumas.get(element)))
+                result.sort()
+        archivo.close()
+    return(result)
 
 
 def pregunta_04():
