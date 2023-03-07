@@ -37,18 +37,18 @@ def pregunta_02():
     ]
 
     """
-    archivo = open('./data.csv', 'r')
-    conteos = {}
+    with open('./data.csv', 'r') as archivo:
+        conteos = {}
 
-    for linea in archivo.readlines():
-        columnas = linea.strip().split('\t')
-        valor_variable = columnas[0]
-        if valor_variable not in conteos:
-            conteos[valor_variable] = 1
-        else:
-            conteos[valor_variable] += 1
-    lista_conteos = list(conteos.items())
-    lista=lista_conteos.sort()
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            valor_variable = columnas[0]
+            if valor_variable not in conteos:
+                conteos[valor_variable] = 1
+            else:
+                conteos[valor_variable] += 1
+        lista_conteos = list(conteos.items())
+        lista=lista_conteos.sort()
     archivo.close()
     return(lista)
 
