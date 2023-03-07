@@ -50,7 +50,8 @@ def pregunta_02():
     archivo.close()
     lista_conteos = list(conteos.items())
     lista_conteos.sort()
-    return
+    archivo.close()
+    return(lista_conteos.sort())
 
 
 def pregunta_03():
@@ -68,6 +69,8 @@ def pregunta_03():
     ]
 
     """
+    archivo = open('./data.csv', 'r')
+    
     return
 
 
