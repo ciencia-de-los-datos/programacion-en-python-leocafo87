@@ -39,6 +39,7 @@ def pregunta_02():
     """
     with open('./data.csv', 'r') as archivo:
         conteos = {}
+        result=[]
 
         for linea in archivo.readlines():
             columnas = linea.strip().split('\t')
@@ -47,10 +48,11 @@ def pregunta_02():
                 conteos[valor_variable] = 1
             else:
                 conteos[valor_variable] += 1
-        lista_conteos = list(conteos.items())
-        lista=lista_conteos.sort()
+        for element in conteos:
+            result.append((element,conteos.get(element)))
+            result.sort()
     archivo.close()
-    return(lista)
+    return(result)
 
 
 def pregunta_03():
