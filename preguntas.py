@@ -19,7 +19,7 @@ def pregunta_01():
             valor = int(columnas[1])
             total += valor
     archivo.close()
-    return total
+    return(total)
     
 
 def pregunta_02():
@@ -106,7 +106,22 @@ def pregunta_04():
     ]
 
     """
-    return
+    archivo = open('./data.csv', 'r')
+    conteos_mes = {}
+
+    for linea in archivo.readlines():
+        columnas = linea.strip().split('\t')
+        col_fecha = columnas[2]
+        col_fecha = col_fecha.split('-')
+        mes = col_fecha[1]
+        if mes not in conteos_mes:
+            conteos_mes[mes] = 1
+        else:
+            conteos_mes[mes] += 1
+    lista_conteo_mes = list(conteos_mes.items())
+    lista_conteo_mes.sort()
+    archivo.close()
+    return(lista_conteo_mes.sort())
 
 
 def pregunta_05():
@@ -124,7 +139,29 @@ def pregunta_05():
     ]
 
     """
-    return
+    archivo = open('./data.csv', 'r')
+    conteos_max_min ={}
+    resultado=[]
+
+    for linea in archivo.readlines():
+        columnas = linea.strip().split('\t')
+        variable = columnas[0]
+        valor = columnas[1]
+        if variable not in conteos_max_min:
+            conteos_max_min[variable] = []
+        conteos_max_min[variable].append(valor)
+
+    
+    for variable, valor in conteos_max_min.items():
+        max_val = max(valor)
+        min_val = min(valor)
+        resultado.append((variable,max_val,min_val))
+
+    lista_max_min = list(resultado.items())
+    lista_max_min.sort()
+    archivo.close()
+
+    return(lista_max_min.sort())
 
 
 def pregunta_06():
