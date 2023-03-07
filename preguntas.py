@@ -19,7 +19,7 @@ def pregunta_01():
             valor = int(columnas[1])
             total += valor
     archivo.close()
-    return(total)
+    return total
     
 
 def pregunta_02():
@@ -47,7 +47,6 @@ def pregunta_02():
             conteos[valor_variable] = 1
         else:
             conteos[valor_variable] += 1
-    archivo.close()
     lista_conteos = list(conteos.items())
     lista_conteos.sort()
     archivo.close()
@@ -70,8 +69,19 @@ def pregunta_03():
 
     """
     archivo = open('./data.csv', 'r')
-    
-    return
+    sumas = {}
+
+    for linea in archivo.readlines():
+        columnas = linea.strip().split('\t')
+        valor_variable = columnas[0]
+        if valor_variable not in sumas:
+            sumas[valor_variable] = int(columnas[1])
+        else:
+            sumas[valor_variable] = sumas[valor_variable] + int(columnas[1])
+    lista_sumas = list(sumas.items())
+    lista_sumas.sort()
+    archivo.close()
+    return(lista_sumas.sort())
 
 
 def pregunta_04():
