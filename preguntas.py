@@ -1,28 +1,26 @@
 """
 Laboratorio de Programación Básica en Python para Manejo de Datos
 -----------------------------------------------------------------------------------------
-
 Este archivo contiene las preguntas que se van a realizar en el laboratorio.
-
 No puede utilizar pandas, numpy o scipy. Se debe utilizar solo las funciones de python
 básicas.
-
 Utilice el archivo `data.csv` para resolver las preguntas.
-
-
 """
 
-
 def pregunta_01():
-    """
-    Retorne la suma de la segunda columna.
-
+    """    Retorne la suma de la segunda columna.
     Rta/
     214
-
     """
-    return
-
+    total = 0
+    with open('./data.csv', 'r') as archivo:
+        for linea in archivo.readlines():
+            columnas = linea.split('\t')
+            valor = int(columnas[1])
+            total += valor
+    archivo.close()
+    return(total)
+    
 
 def pregunta_02():
     """
@@ -39,7 +37,22 @@ def pregunta_02():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        conteos = {}
+        result=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            valor_variable = columnas[0]
+            if valor_variable not in conteos:
+                conteos[valor_variable] = 1
+            else:
+                conteos[valor_variable] += 1
+        for element in conteos:
+            result.append((element,conteos.get(element)))
+            result.sort()
+    archivo.close()
+    return(result)
 
 
 def pregunta_03():
@@ -57,7 +70,22 @@ def pregunta_03():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        sumas = {}
+        result=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            valor_variable = columnas[0]
+            if valor_variable not in sumas:
+                sumas[valor_variable] = int(columnas[1])
+            else:
+                sumas[valor_variable] = sumas[valor_variable] + int(columnas[1])
+        for element in sumas:
+                result.append((element,sumas.get(element)))
+                result.sort()
+        archivo.close()
+    return(result)
 
 
 def pregunta_04():
@@ -82,7 +110,24 @@ def pregunta_04():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        conteos_mes = {}
+        result=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            col_fecha = columnas[2]
+            col_fecha = col_fecha.split('-')
+            mes = col_fecha[1]
+            if mes not in conteos_mes:
+                conteos_mes[mes] = 1
+            else:
+                conteos_mes[mes] += 1
+        for element in conteos_mes:
+                result.append((element,conteos_mes.get(element)))
+                result.sort()
+        archivo.close()
+    return(result)
 
 
 def pregunta_05():
@@ -100,7 +145,26 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        conteos_max_min ={}
+        resultado=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            variable = columnas[0]
+            valor = columnas[1]
+            if variable not in conteos_max_min:
+                conteos_max_min[variable] = []
+            conteos_max_min[variable].append(int(valor))
+
+        
+        for variable, valor in conteos_max_min.items():
+            max_val = max(valor)
+            min_val = min(valor)
+            resultado.append((variable,max_val,min_val))
+            resultado.sort()
+        archivo.close()
+    return(resultado)
 
 
 def pregunta_06():
@@ -125,7 +189,32 @@ def pregunta_06():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        cont_max_min ={}
+        result=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            diccionario = columnas[4]
+
+            for item in diccionario:
+                valores = diccionario.strip().split(',')
+            
+            for par in valores:
+                clave = par.split(':')
+
+                if clave[0] not in cont_max_min:
+                    cont_max_min[clave[0]] = []
+                cont_max_min[clave[0]].append(int(clave[1]))
+        
+        for variable, valor in cont_max_min.items():
+            max_val = max(valor)
+            min_val = min(valor)
+            result.append((variable,min_val,max_val))
+            result.sort()
+        archivo.close()
+
+    return(result)
 
 
 def pregunta_07():
@@ -149,7 +238,25 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        lista = {}
+        resultado=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            numeros = columnas[1]
+            letra = columnas[0]
+
+            if numeros not in lista:
+                lista[numeros] = []
+            lista[numeros].append(letra)
+
+        for numero in lista:
+            num = int(numero)
+            resultado.append((num,lista.get(numero)))
+        resultado.sort()
+        archivo.close()
+    return(resultado)
 
 
 def pregunta_08():
@@ -174,7 +281,27 @@ def pregunta_08():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        lista = {}
+        resultado=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            numeros = columnas[1]
+            letra = columnas[0]
+
+            if numeros not in lista:
+                lista[numeros] = []
+            if letra not in lista[numeros]:
+                lista[numeros].append(letra)
+                lista[numeros].sort()
+
+        for numero in lista:
+            num = int(numero)
+            resultado.append((num,lista.get(numero)))
+        resultado.sort()
+        archivo.close()
+    return(resultado)
 
 
 def pregunta_09():
@@ -197,7 +324,33 @@ def pregunta_09():
     }
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        cont_max_min ={}
+        result=[]
+        dic_res={}
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            diccionario = columnas[4]
+
+            for item in diccionario:
+                valores = diccionario.strip().split(',')
+            
+            for par in valores:
+                clave = par.split(':')
+
+                if clave[0] not in cont_max_min:
+                    cont_max_min[clave[0]] = []
+                cont_max_min[clave[0]].append(int(clave[1]))
+        
+        for variable , valor in cont_max_min.items():
+            cant_entradas = len(valor)
+            result.append((variable,cant_entradas))
+            dic_res[variable] = cant_entradas
+        orderdic = dict(sorted(dic_res.items()))            
+        archivo.close()
+
+    return(orderdic)
 
 
 def pregunta_10():
@@ -215,10 +368,24 @@ def pregunta_10():
         ("E", 2, 3),
         ("E", 3, 3),
     ]
-
-
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        
+        result=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            letra = columnas[0]
+            col4 = columnas[3]
+            col5 = columnas[4]
+
+            for item in col4:
+                entidades = len(col4.strip().split(','))
+                parejas = len(col5.strip().split(','))
+            result.append((letra,entidades,parejas))
+        archivo.close()
+ 
+    return(result)
 
 
 def pregunta_11():
@@ -239,7 +406,26 @@ def pregunta_11():
 
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        
+        sumas = {}
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            cadena = columnas[3]
+            valor= columnas[1]
+
+            for item in cadena:
+                letra = cadena.split(',')
+            for caracter in letra:
+                if caracter not in sumas:
+                    sumas[caracter] = int(valor)
+                else:
+                    sumas[caracter] = sumas[caracter] + int(valor)
+        orderdic = dict(sorted(sumas.items()))
+        archivo.close()
+ 
+    return(orderdic)
 
 
 def pregunta_12():
@@ -257,4 +443,25 @@ def pregunta_12():
     }
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        
+        sumas = {}
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            cadena = columnas[4]
+            letra= columnas[0]
+
+            for item in cadena:
+                tupla = cadena.split(',')
+            for cadena in tupla:
+                var1=cadena.split(':')
+                if letra not in sumas:
+                    sumas[letra] = int(var1[1])
+                else:
+                    sumas[letra] = sumas[letra] + int(var1[1])
+        orderdic = dict(sorted(sumas.items()))    
+
+        archivo.close()
+ 
+    return(orderdic)
