@@ -203,10 +203,9 @@ def pregunta_06():
             for par in valores:
                 clave = par.split(':')
 
-            if clave[0] not in cont_max_min:
-                cont_max_min[clave[0]] = []
+                if clave[0] not in cont_max_min:
+                    cont_max_min[clave[0]] = []
                 cont_max_min[clave[0]].append(int(clave[1]))
-
         
         for variable, valor in cont_max_min.items():
             max_val = max(valor)
@@ -214,6 +213,7 @@ def pregunta_06():
             result.append((variable,min_val,max_val))
             result.sort()
         archivo.close()
+
     return(result)
 
 
