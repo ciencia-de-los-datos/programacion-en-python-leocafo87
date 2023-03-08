@@ -238,7 +238,25 @@ def pregunta_07():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        lista = {}
+        resultado=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            numeros = columnas[1]
+            letra = columnas[0]
+
+            if numeros not in lista:
+                lista[numeros] = []
+            lista[numeros].append(letra)
+
+        for numero in lista:
+            num = int(numero)
+            resultado.append((num,lista.get(numero)))
+        resultado.sort()
+        archivo.close()
+    return(resultado)
 
 
 def pregunta_08():
@@ -263,7 +281,27 @@ def pregunta_08():
     ]
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        lista = {}
+        resultado=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            numeros = columnas[1]
+            letra = columnas[0]
+
+            if numeros not in lista:
+                lista[numeros] = []
+            if letra not in lista[numeros]:
+                lista[numeros].append(letra)
+                lista[numeros].sort()
+
+        for numero in lista:
+            num = int(numero)
+            resultado.append((num,lista.get(numero)))
+        resultado.sort()
+        archivo.close()
+    return(resultado)
 
 
 def pregunta_09():
@@ -286,7 +324,33 @@ def pregunta_09():
     }
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        cont_max_min ={}
+        result=[]
+        dic_res={}
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            diccionario = columnas[4]
+
+            for item in diccionario:
+                valores = diccionario.strip().split(',')
+            
+            for par in valores:
+                clave = par.split(':')
+
+                if clave[0] not in cont_max_min:
+                    cont_max_min[clave[0]] = []
+                cont_max_min[clave[0]].append(int(clave[1]))
+        
+        for variable , valor in cont_max_min.items():
+            cant_entradas = len(valor)
+            result.append((variable,cant_entradas))
+            dic_res[variable] = cant_entradas
+        orderdic = dict(sorted(dic_res.items()))            
+        archivo.close()
+
+    return(orderdic)
 
 
 def pregunta_10():
