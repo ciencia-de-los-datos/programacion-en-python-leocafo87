@@ -368,10 +368,24 @@ def pregunta_10():
         ("E", 2, 3),
         ("E", 3, 3),
     ]
-
-
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        
+        result=[]
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            letra = columnas[0]
+            col4 = columnas[3]
+            col5 = columnas[4]
+
+            for item in col4:
+                entidades = len(col4.strip().split(','))
+                parejas = len(col5.strip().split(','))
+            result.append((letra,entidades,parejas))
+        archivo.close()
+ 
+    return(result)
 
 
 def pregunta_11():
@@ -392,7 +406,26 @@ def pregunta_11():
 
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        
+        sumas = {}
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            cadena = columnas[3]
+            valor= columnas[1]
+
+            for item in cadena:
+                letra = cadena.split(',')
+            for caracter in letra:
+                if caracter not in sumas:
+                    sumas[caracter] = int(valor)
+                else:
+                    sumas[caracter] = sumas[caracter] + int(valor)
+        orderdic = dict(sorted(sumas.items()))
+        archivo.close()
+ 
+    return(orderdic)
 
 
 def pregunta_12():
@@ -410,4 +443,25 @@ def pregunta_12():
     }
 
     """
-    return
+    with open('./data.csv', 'r') as archivo:
+        
+        sumas = {}
+
+        for linea in archivo.readlines():
+            columnas = linea.strip().split('\t')
+            cadena = columnas[4]
+            letra= columnas[0]
+
+            for item in cadena:
+                tupla = cadena.split(',')
+            for cadena in tupla:
+                var1=cadena.split(':')
+                if letra not in sumas:
+                    sumas[letra] = int(var1[1])
+                else:
+                    sumas[letra] = sumas[letra] + int(var1[1])
+        orderdic = dict(sorted(sumas.items()))    
+
+        archivo.close()
+ 
+    return(orderdic)
